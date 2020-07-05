@@ -44,11 +44,6 @@ Os databases são os containers que armazenam as coleções de documentos, são 
 
   db
 ```
-ou
-
-```js
-  db.getName()
-```
 
 ### Listar todos databases dispoíveis
 ```js
@@ -132,9 +127,21 @@ db.pessoas.insert(
   )
 ```
 
+### Consultando documentos
+```js
+  //seleciona tudo, equivalente ao select * from tabela
+ db.products.find() 
+```
 
+### Consulta formatada para visualização em formato Json
+```js
+  //melhora visualização
+  db.products.find().pretty  
+```
 
-
+### Consulta com filtro de pesquisa
+```js
+```
 
 
 
