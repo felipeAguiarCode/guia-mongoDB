@@ -27,16 +27,34 @@ Para abrir uma conexão com o servidor ativo, abra um novo terminal do windows e
 ```Shell
  C:\Users\meuPC> mongo
 ```
+## Tipos de dados
+
+Alguns dos tipos de dados oferecidos pelo mongoDB diferentes:
+
+| tipo de dado | Descrição                                                    | Exemplo                    |
+|--------------|--------------------------------------------------------------|----------------------------|
+| `double`     | Valor numérico de dupla precisão                             | 13.47                      |
+| `integer`    | Armazena valores numéricos inteiros                          | 10                         |
+| `string`     | Armazena valor em texto                                      | "felipe aguiar"            |
+| `array`      | Armazena uma matriz de informações                           | ["tag1","tag2","tag3"]     |
+| `boolean`    | Armazena valores de "verdadeiro" e "falso"                   | true                       |
+| `objectId`   | Gera valores de códigos únicos, rápidos de gerar e ordenados |  objectId()                |
+|              |                                                              |                            |
+
+
+
+
+
 ## DATABASE
 
 Os databases são os containers que armazenam as coleções de documentos, são os bancos de dados propriamente dito.
 
-### Ativar ou criar (caso não exista) um database
+#### Ativar ou criar (caso não exista) um database
 ```js
   use DATABASE_NOME
 ```
 
-### Mostra nome do banco atual
+#### Mostra nome do banco atual
 ```js
   db.getName()
 
@@ -45,17 +63,17 @@ Os databases são os containers que armazenam as coleções de documentos, são 
   db
 ```
 
-### Listar todos databases dispoíveis
+#### Listar todos databases dispoíveis
 ```js
   show dbs
 ```
 
-### Deletar database
+#### Deletar database
 ```js
   db.dropDatabase()
 ```
 
-### Ver overview do banco
+#### Ver overview do banco
 ```js
   db.stats()
 ```
@@ -63,21 +81,27 @@ Os databases são os containers que armazenam as coleções de documentos, são 
 ## COLEÇÕES
   Coleções são grupos de documentos BSON, são como se fossem 
 
-### Criar uma coleção préviamente
+#### Criar uma coleção préviamente
 ```js
   db.createCollection("nomeDaColeção")
 
   //saída: cria uma coleção com o nome passado.
 ```
 
-### Criar uma coleção automáticamente (caso não exista)
+#### Criar uma coleção automáticamente (caso não exista)
 ```js
   db.produtos.insert({"nome":"notebook"})
 
   /* outra maneira de criar uma coleção é inserir qualquer documento informando uma coleção, 
      aqui é inserido um documento na coleção produtos, caso ela não exista, será criado automáticamente. */
 ```
-### Deletar uma coleção
+
+#### Listar coleções da base de dados ativa
+```js
+  show collections
+```
+
+#### Deletar uma coleção
 ```js
   //deleta coleção 
   db.NomeDaColecao.drop()
@@ -85,16 +109,12 @@ Os databases são os containers que armazenam as coleções de documentos, são 
   //ou passando o nome da coleção via string
    db.getCollection("NomeDaDolecao").drop();
 ```
-### Listar coleções da base de dados ativa
-```js
-  show collections
-```
 
 
 ## DOCUMENTOS
   São os 'registros' de um banco feito em mongoDB, são basicamente objetos JSON salvos em formato binário (BSON).
 
-### Inserindo um documento
+#### Inserindo um documento
 ```js
 // insere um documento na coleção pessoas
 
@@ -107,7 +127,7 @@ db.pessoas.insert(
   )
 ```
 
-### Inserindo multiplos documentos
+#### Inserindo multiplos documentos
 ```js
   //passar um vetor de documentos JSON a serem inseridos na coleção de pessoas
 
@@ -127,20 +147,21 @@ db.pessoas.insert(
   )
 ```
 
-### Consultando documentos
+#### Consultando documentos
 ```js
   //seleciona tudo, equivalente ao select * from tabela
- db.products.find() 
+ db.pessoas.find() 
 ```
 
-### Consulta formatada para visualização em formato Json
+#### Consulta formatada para visualização em formato Json
 ```js
   //melhora visualização
-  db.products.find().pretty  
+  db.pessoas.find().pretty  
 ```
 
-### Consulta com filtro de pesquisa
+#### Consulta com filtro de pesquisa
 ```js
+  db.pessoas.find({name:"mouse"})
 ```
 
 
